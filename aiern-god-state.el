@@ -53,7 +53,7 @@
 
 (aiern-define-state god
   "Aiern God state."
-  :tag " <AG> "
+  :tag " AG "
   :message "-- AIERN GOD MODE --"
   :entry-hook (aiern-god-start-hook)
   :exit-hook (aiern-god-stop-hook)
