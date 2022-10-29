@@ -1,0 +1,30 @@
+* aiern God State
+  :PROPERTIES:
+  :CUSTOM_ID: aiern-god-state
+  :END:
+This is an [[https://gitorious.org/aiern/][aiern-mode]] state for using
+[[https://github.com/chrisdone/god-mode][god-mode]].
+
+It provides a command =aiern-execute-in-god-state= that switches to
+=god-mode= for the next command. I bind it to =,=
+
+#+begin_src lisp
+  (aiern-define-key 'normal global-map "," 'aiern-execute-in-god-state)
+#+end_src
+
+for an automatically-configured leader key.
+
+Since =aiern-god-state= includes an indicator in the mode-line, you may
+want to use =diminish= to keep your mode-line uncluttered, e.g.
+
+#+begin_src lisp
+  (add-hook 'aiern-god-state-entry-hook (lambda () (diminish 'god-local-mode)))
+  (add-hook 'aiern-god-state-exit-hook (lambda () (diminish-undo 'god-local-mode)))
+#+end_src
+
+It's handy to be able to abort a `aiern-god-state' command. The
+following will make the key unconditionally exit aiern-god-state.
+
+#+begin_src lisp
+  (aiern-define-key 'god global-map [escape] 'aiern-god-state-bail)
+#+end_src
